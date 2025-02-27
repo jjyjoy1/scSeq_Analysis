@@ -1,0 +1,13 @@
+# Core Python packages
+pip install scanpy pandas numpy matplotlib seaborn gseapy
+
+# Deep learning-based packages
+pip install scvi-tools
+
+###also need the following bioinformatics tools, called via command line
+#CellPhoneDB - For ligand-receptor analysis (called via command line)
+#GATK - For variant calling (called via command line)
+#Picard - For BAM file processing (called via command line)
+#Cell Ranger - For aligning and processing 10x Genomics data (called via command line)
+#FastQC - For quality control of raw reads (called via command line)
+#MultiQC 

@@ -1,0 +1,99 @@
+#Run the scTCR analysis using:
+#sample_infor.csv contains sampel name, file name and file path
+python scTCR_analysis.py --data_dir /path/to/fastq_files --output_dir /path/to/output --sample_info sample_info.csv
+
+#If you need gene expression analysis
+python scTCR_analysis.py --data_dir /path/to/fastq_files --output_dir /path/to/output --sample_info sample_info.csv --gene_expression /path/to/expression.h5
+
+
+
+#Key Features of the Pipeline:
+
+1.Raw Data Processing:
+Extracts TCR sequences from fastq.gz files using Cell Ranger
+Performs quality control of the TCR sequences
+
+2.TCR Sequence Analysis:
+Annotates V(D)J gene segments
+Identifies CDR3 regions
+Assigns clonotypes and compiles repertoire information
+
+3.Feature Analysis:
+V(D)J gene usage patterns
+CDR3 length distribution
+Motif identification within CDR3 sequences
+Clonal expansion analysis
+
+4.Repertoire Metrics:
+Diversity calculations (Shannon entropy, Simpson index, clonality)
+Repertoire overlap between samples (Jaccard, Morisita-Horn)
+
+5.Comparative Analysis:
+Statistical comparison between conditions (e.g., healthy vs. disease)
+Identification of differentially used V genes
+Differences in CDR3 features and clonal expansion
+
+6.Integration with Gene Expression (Optional):
+Links TCR data with gene expression profiles
+Performs differential expression analysis
+Maps clonotypes to cell clusters
+
+7.Visualization:
+Comprehensive plots for all analysis steps
+Interactive HTML report summarizing results
+
+
+#For scBCR data analysis using: 
+python scBCR_analysis.py --data_dir /path/to/fastq_files --output_dir /path/to/output --sample_info sample_info.csv
+
+python scBCR_analysis.py --data_dir /path/to/fastq_files --output_dir /path/to/output --sample_info sample_info.csv  --gene_expression /path/to/expression.h5
+
+#Key Features of the BCR Analysis Pipeline:
+
+1.Raw Data Processing:
+Extracts BCR sequences from fastq.gz files using Cell Ranger (with BCR-specific parameters)
+Performs quality control of the sequences
+
+2.BCR Sequence Analysis:
+Annotates V(D)J gene segments for both heavy and light chains
+Identifies CDR3 regions
+Assigns clonotypes and compiles repertoire information
+
+3.Isotype Analysis (BCR-specific):
+Identifies and characterizes isotype distribution (IgM, IgD, IgG1-4, IgA1-2, IgE)
+Compares isotype frequencies between conditions
+
+4.Somatic Hypermutation Analysis (BCR-specific):
+Calculates mutation rates relative to germline sequences
+Analyzes mutation patterns by isotype and chain type
+
+5.B-cell Lineage Reconstruction (BCR-specific):
+Builds lineage trees based on sequence similarity
+Visualizes evolutionary relationships between clonally related B cells
+
+6.Feature Analysis:
+V(D)J gene usage patterns
+CDR3 length distribution
+Motif identification
+Physicochemical properties of CDR3 sequences
+
+7.Repertoire Metrics:
+Diversity calculations
+Repertoire overlap between samples
+Clonal expansion analysis
+
+8.Comparative Analysis:
+Statistical comparison between conditions
+Identifies differentially used V genes
+Analyzes differences in CDR3 features, isotypes, and SHM patterns
+
+9.Integration with Gene Expression (Optional):
+Links BCR data with gene expression profiles
+Performs B-cell subtype analysis
+Correlates gene expression with isotype switching
+
+10.Visualization:
+Comprehensive plots for all analysis steps
+Interactive HTML report summarizing results
+
+
