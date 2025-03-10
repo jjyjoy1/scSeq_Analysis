@@ -1,0 +1,108 @@
+Components of the Pipeline
+
+Single-Cell Analysis Pipeline (Main Pipeline)
+Built using Scanpy and scVI for batch integration
+Handles quality control, normalization, dimensionality reduction, and clustering
+Integrates multiple datasets and reduces batch effects
+Provides comprehensive visualization and results export
+
+
+Custom VAE Implementation for Differential Expression
+PyTorch-based VAE specifically designed for scRNA-seq data
+Includes Bayesian differential expression with uncertainty quantification
+Models gene expression as negative binomial distributions
+Supports batch correction in the latent space
+
+
+Tutorial with Example Workflow
+Step-by-step guide to using the pipeline
+Explains key concepts and parameters
+Demonstrates an end-to-end analysis
+
+
+
+Key Features
+1. Integration of Batches/Experiments
+The pipeline uses variational autoencoders (via scVI) to integrate multiple datasets in a shared latent space, effectively removing unwanted variation across replicates or technologies.
+2. Normalization and Denoising
+
+Library size normalization
+Log transformation
+Feature selection with highly variable genes
+Denoising through the VAE's probabilistic reconstruction
+
+3. Dimensionality Reduction
+
+Initial PCA for basic exploration
+VAE-based latent space for advanced analysis
+UMAP visualization of the integrated data
+
+4. Clustering
+
+Graph-based Leiden clustering
+Flexible resolution parameter to control cluster granularity
+Cluster annotation based on marker genes
+
+5. Bayesian Differential Expression
+
+Uses the VAE's uncertainty estimates
+Handles batch effects during DE analysis
+Provides statistical measures (p-values, FDR, effect sizes)
+Includes visualization of gene expression uncertainty
+
+
+#Running Notes
+The pipeline automatically creates comprehensive visualizations throughout the analysis
+Results are saved in a structured directory for easy access
+The VAE latent space can be used for downstream analyses like trajectory inference
+The uncertainty estimates from the Bayesian approach provide more robust differential expression results
+
+
+#How to use this pipeline
+pipeline = ScRNASeqPipeline(output_dir="./results")
+data_paths = {
+    "sample1": "path/to/sample1.h5ad",
+    "sample2": "path/to/sample2.h5ad"
+}
+pipeline.load_data(data_paths, batch_key="batch")
+
+pipeline.qc_and_filtering() \
+    .normalize_and_scale() \
+    .run_pca() \
+    .prepare_scvi() \
+    .run_scvi() \
+    .run_umap() \
+    .run_clustering() \
+    .find_markers() \
+    .run_bayesian_de() \
+    .save_results()
+
+train_dl, val_dl, data_info = prepare_data_from_anndata(adata, batch_key="batch")
+model = scRNAVAE(n_genes=data_info['n_genes'], n_batches=data_info['n_batches'])
+metrics = train_vae(model, train_dl, val_dl)
+de_results = bayesian_differential_expression(model, adata, "condition", "control", "treatment")
+
+
+##Components of the Pipeline
+
+Single-Cell Analysis Pipeline (Main Pipeline)
+
+Built using Scanpy and scVI for batch integration
+Handles quality control, normalization, dimensionality reduction, and clustering
+Integrates multiple datasets and reduces batch effects
+Provides comprehensive visualization and results export
+
+
+Custom VAE Implementation for Differential Expression
+
+PyTorch-based VAE specifically designed for scRNA-seq data
+Includes Bayesian differential expression with uncertainty quantification
+Models gene expression as negative binomial distributions
+Supports batch correction in the latent space
+
+
+Tutorial with Example Workflow
+
+Step-by-step guide to using the pipeline
+Explains key concepts and parameters
+Demonstrates an end-to-end analysis

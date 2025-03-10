@@ -1,0 +1,39 @@
+MiXCR is a powerful command-line tool, which is also popular TCR/BCT analysis tools,  specifically designed for immune repertoire analysis from sequencing data, with excellent capabilities for extracting TCR and BCR sequences from raw sequencing files.
+Key Features of the MiXCR-based Analysis Pipeline:
+
+Data Processing with MiXCR:
+Processes FASTQ files directly using MiXCR's specialized algorithms
+Employs built-in presets optimized for TCR or BCR data
+Supports both single-end and paired-end sequencing data
+Extracts UMI and cell barcode information for single-cell analysis
+
+V(D)J Analysis:
+Performs accurate V(D)J gene segment annotation
+Identifies CDR3 regions and calculates clone frequencies
+Analyzes gene usage patterns across samples and conditions
+Creates detailed V-J pairing visualizations
+
+CDR3 Sequence Analysis:
+Length distribution and physicochemical properties
+Amino acid composition and motif identification
+Statistical comparison between experimental conditions
+
+Clonal Expansion Analysis:
+Measures repertoire clonality and diversity
+Identifies and characterizes expanded clonotypes
+Uses multiple diversity metrics (Shannon entropy, clonality, Gini index)
+
+Isotype Analysis (BCR-specific):
+Quantifies isotype distribution (IgM, IgG1-4, IgA1-2, etc.)
+Compares isotype usage between conditions
+
+
+Comparative Analysis:
+Statistical comparison between experimental conditions
+Identifies differentially used V genes and expanded clonotypes
+Analyzes differences in CDR3 features
+
+
+Comprehensive Visualization:
+Creates detailed plots for all analyses
+Generates an HTML summary report with key findings

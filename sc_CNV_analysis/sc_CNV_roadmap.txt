@@ -1,0 +1,29 @@
+This workflow follows these main steps:
+
+The code provides an end-to-end solution with the following stages:
+
+Cell Ranger Processing: Aligns FASTQ files to produce gene expression matrices
+Quality Control: Filters cells and genes based on standard QC metrics
+Data Integration: Merges tumor and normal samples using scVI
+CNV Analysis: Uses inferCNVpy to detect copy number variations
+Visualization: Creates plots of CNV results
+
+Key Features
+
+Modular Design: Each processing step is separated into functions for better readability and customization
+QC Parameters: Configurable filtering thresholds for mitochondrial genes, UMI counts, etc.
+Integration Strategy: Uses scVI's powerful neural network approach for batch correction
+Reference Selection: Allows selection of specific cell types as CNV references
+Visualization: Comprehensive visualization of CNV results by clusters and conditions
+
+
+Key points to remember when working with inferCNVpy on scRNA-seq data:
+
+Reference cell selection is crucial - immune cells or stromal cells make good references as they're less likely to harbor CNVs.
+The approach works best for detecting large-scale chromosomal alterations rather than small focal events.
+Gene position annotations must match the genome build used in your Cell Ranger alignment.
+Integration with scVI before CNV analysis helps correct for techn
+
+
+
+

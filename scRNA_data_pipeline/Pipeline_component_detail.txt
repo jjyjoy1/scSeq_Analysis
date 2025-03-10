@@ -1,0 +1,137 @@
+Understanding the Pipeline Components
+1. Quality Control and Filtering
+The QC step calculates metrics like number of genes per cell, total counts per cell, and percentage of mitochondrial genes. It then filters cells and genes based on these metrics:
+
+Cells with too few genes may be empty droplets
+Cells with too many genes may be doublets
+High mitochondrial percentage indicates cell stress or death
+Low-count cells may have poor quality RNA
+
+2. Normalization and Feature Selection
+The pipeline normalizes data to account for differences in sequencing depth between cells, then identifies highly variable genes (HVGs) that show biological variation beyond technical noise. These HVGs are used for downstream analysis to reduce dimensionality and computational cost.
+3. VAE-based Integration (scVI)
+The core of this pipeline uses scVI (single-cell Variational Inference) to:
+
+Learn a latent representation of the data that accounts for batch effects
+Model the count distribution of scRNA-seq data
+Provide uncertainty estimates for downstream tasks
+
+Unlike traditional methods like PCA, scVI is:
+
+Non-linear (can capture complex relationships)
+Probabilistic (models uncertainty)
+Designed specifically for the count distributions in scRNA-seq data
+
+4. Clustering and Marker Gene Identification
+After dimensionality reduction, we:
+
+Build a nearest-neighbor graph
+Use the Leiden algorithm to identify cell clusters
+Find marker genes specific to each cluster using Wilcoxon rank-sum test
+Run Bayesian differential expression analysis with the trained VAE
+
+5. Cell Type Annotation
+The pipeline can label clusters by comparing marker genes with known cell type signatures. This is particularly useful for well-characterized tissues like blood.
+Visualizing Results
+The pipeline generates several visualizations:
+
+QC plots showing distributions of key metrics
+UMAP plots colored by batch, cluster, and cell type
+Marker gene heatmaps and dot plots
+Differential expression results
+
+Further Analysis
+With the VAE latent space, you can perform additional analyses:
+
+Trajectory inference (pseudotime) using tools like PAGA or Palantir
+RNA velocity analysis with scVelo
+Integration with other modalities (CITE-seq, spatial transcriptomics)
+Transfer learning to label new datasets
+
+Working with Your Own Data
+When adapting this pipeline to your own datasets:
+
+Prepare your input files: The pipeline accepts various formats including h5ad, h5, mtx, and csv
+Adjust QC parameters: Customize thresholds based on your data characteristics
+Tune integration parameters: The number of latent dimensions and training parameters may need adjustment
+Customize marker genes: Update the markers dictionary with genes relevant to your biological system
+Experimental design: Consider adding condition information (e.g., treatment vs. control) for condition-specific differential expression
+
+Troubleshooting
+Common issues and solutions:
+
+Memory errors: For large datasets, consider:
+
+Subsetting to fewer cells during initial exploration
+Using fewer highly variable genes
+Running on a machine with more RAM
+
+
+Batch effect persists: Try:
+
+Increasing the number of training epochs
+Adjusting the latent dimension
+Using additional covariates during scVI setup
+
+
+Poor clustering: Try:
+
+Different resolution parameters
+Using different representations (PCA vs. scVI)
+Building the neighbor graph with different parameters
+
+
+GPU acceleration: Make sure you have:
+
+CUDA installed correctly
+Compatible PyTorch version
+Sufficient GPU memory
+
+
+
+References
+
+Lopez, R., Regier, J., Cole, M. B., Jordan, M. I., & Yosef, N. (2018). Deep generative modeling for single-cell transcriptomics. Nature methods, 15(12), 1053-1058.
+Wolf, F. A., Angerer, P., & Theis, F. J. (2018). SCANPY: large-scale single-cell gene expression data analysis. Genome biology, 19(1), 1-5.
+Traag, V. A., Waltman, L., & van Eck, N. J. (2019). From Louvain to Leiden: guaranteeing well-connected communities. Scientific reports, 9(1), 1-12.
+
+3. Run the pipeline
+pipeline.load_data(data_paths, batch_key="batch")
+4. Perform QC and filtering
+pipeline.qc_and_filtering(
+min_genes=200,
+max_genes=4000,
+max_mt_percent=15,
+min_counts=500
+)
+5. Normalize and identify highly variable genes
+pipeline.normalize_and_scale(n_top_genes=2000)
+6. Run initial PCA
+pipeline.run_pca(n_comps=30)
+7. Prepare and run scVI model for batch integration and VAE latent space
+pipeline.prepare_scvi(batch_key="batch")
+pipeline.run_scvi(
+n_latent=20,
+n_epochs=100,
+lr=0.001,
+use_gpu=True  # Set to False if GPU not available
+)
+8. Generate UMAP embedding using the VAE latent space
+pipeline.run_umap(use_scvi=True)
+9. Perform clustering
+pipeline.run_clustering(resolution=0.6)
+10. Find marker genes for each cluster
+pipeline.find_markers(groupby='leiden', n_genes=20)
+11. Run Bayesian differential expression using scVI
+pipeline.run_bayesian_de(groupby='leiden')
+12. Annotate clusters with known marker genes (cell type assignment)
+immune_markers = {
+"T_cells": ["CD3D", "CD3E", "CD3G", "CD8A", "CD8B", "CD4"],
+"B_cells": ["CD19", "MS4A1", "CD79A", "CD79B"],
+"NK_cells": ["NCAM1", "NKG7", "KLRD1", "KLRF1"],
+"Monocytes": ["CD14", "LYZ", "FCGR3A", "MS4A7"],
+"Dendritic_cells": ["FCER1A", "CLEC10A", "ITGAX", "ITGAM"],
+"Neutrophils": ["S100A8", "S100A9", "FCGR3B", "CSF3R"]
+}
+
+
