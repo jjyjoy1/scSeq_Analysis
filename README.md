@@ -1,6 +1,10 @@
 I've created a comprehensive pipeline for single-cell RNA sequencing analysis with implementations in both Python and R, focusing on the requirements for batch integration, normalization, clustering, and differential expression analysis.
 What I've Provided
 
+I also prepared scripts for TCR/BCR single cell data analysis and spatial transcriptomics data analysis. 
+
+In the meantime, I summaried three scData integration deep learning models, which contain basic usages, model performance evaluation and visualization. 
+
 Python Implementation (Scanpy + scVI)
 
 A complete modular pipeline built with Scanpy and scVI
