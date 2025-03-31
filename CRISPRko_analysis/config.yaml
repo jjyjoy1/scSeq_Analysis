@@ -1,0 +1,52 @@
+# Configuration for CRISPR Knockout (CRISPRko) Snakemake Pipeline
+# Filename: config.yaml
+
+# Output directory
+output_dir: "results"
+
+# Reference genome (full path to fasta file)
+reference_genome: "/path/to/reference/genome.fa"
+
+# Guide RNA file (one guide per line)
+guide_rna_file: "guides.txt"
+
+# Sample information
+samples:
+  sample1:
+    r1: "data/sample1_R1.fastq.gz"
+    r2: "data/sample1_R2.fastq.gz"
+    amplicon: "ACTGCTAGCTAGCTAGCTATCGCTAGCTAGCTAGCTAGCTGATCGATCGATCGATCGATCTAGCTAGCTAGCTA"
+    target_gene: "BRCA1"
+    guide_rna: "GCTAGCTAGCTATCGCTAGCT"
+  
+  sample2:
+    r1: "data/sample2_R1.fastq.gz"
+    r2: "data/sample2_R2.fastq.gz"
+    amplicon: "ACTGCTAGCTAGCTAGCTATCGCTAGCTAGCTAGCTAGCTGATCGATCGATCGATCGATCTAGCTAGCTAGCTA"
+    target_gene: "BRCA1"
+    guide_rna: "GCTAGCTAGCTATCGCTAGCT"
+  
+  sample3:
+    r1: "data/sample3_R1.fastq.gz"
+    r2: "data/sample3_R2.fastq.gz"
+    amplicon: "ACGTCGATCGATCGTAGCTAGCTGATCGATCGATCGTACGTACGTAGCTAGCTAGCATCGATCGATCGTAGCT"
+    target_gene: "TP53"
+    guide_rna: "GATCGATCGATCGTACGTACG"
+  
+  # Control sample (without CRISPR treatment)
+  control:
+    r1: "data/control_R1.fastq.gz"
+    r2: "data/control_R2.fastq.gz"
+    amplicon: "ACTGCTAGCTAGCTAGCTATCGCTAGCTAGCTAGCTAGCTGATCGATCGATCGATCGATCTAGCTAGCTAGCTA"
+    target_gene: "Control"
+    guide_rna: ""
+
+# Trimmomatic parameters
+trimmomatic:
+  adapters: "/path/to/adapters/TruSeq3-PE.fa"
+  params: "LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36"
+
+# CRISPResso2 parameters
+crispresso:
+  window_size: 10  # Window size around the cut site to quantify indels
+
