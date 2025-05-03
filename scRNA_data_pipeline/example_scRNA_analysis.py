@@ -23,7 +23,7 @@ data_paths = {
 
 pipeline.annotate_clusters(markers_dict=immune_markers)
 
-# 13. Save the results
+# 3. Save the results
 pipeline.save_results(filename='pbmc_analysis.h5ad')
 
 print("Analysis complete!")
