@@ -1,8 +1,3 @@
-Great, I’ll compile a detailed technical report summarizing advances in single-cell data analysis from the last five years, with a focus on human data. This will include the application of machine learning and deep learning models from sequencing noise correction to cell type annotation, T/B cell repertoire analysis, and spatial transcriptomics. I’ll focus on published methods, model architectures, and commonly used tools.
-
-I’ll let you know as soon as the report is ready.
-
-
 # Advances in Machine Learning for Single-Cell Data Analysis (2019–2024)
 
 Single-cell genomic technologies have rapidly advanced, yielding complex datasets that challenge traditional analysis methods due to their noise, sparsity, and high dimensionality. In the last five years, machine learning (ML) – especially deep learning (DL) – has been applied at every stage of the single-cell analysis pipeline to extract meaningful biological insights from human single-cell data. Deep neural networks can capture intricate patterns in heterogeneous, noisy single-cell data, often outperforming conventional approaches. Below, we provide a structured review of these advances, covering the analysis pipeline (from noise correction to cell type annotation), immune repertoire analysis for T and B cells, spatial transcriptomics, and the key DL model architectures (autoencoders, graph neural networks, transformers, etc.) that have driven new methods. We highlight widely adopted, peer-reviewed tools and models (with citations) and summarize them in tables for clarity.
