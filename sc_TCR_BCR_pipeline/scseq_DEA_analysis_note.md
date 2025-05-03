@@ -1,6 +1,3 @@
-Here's the enhanced Markdown version with improved structure, formatting, and visual elements:
-
-```markdown
 # Single-Cell RNA-seq Differential Expression Analysis Pipeline
 
 ## Overview
