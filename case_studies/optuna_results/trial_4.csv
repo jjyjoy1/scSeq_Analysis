@@ -1,0 +1,2 @@
+n_top_genes,min_genes,min_cells,normalize_target,n_latent,n_hidden,n_layers,learning_rate,dropout_rate,use_layer_norm,use_batch_norm,max_epochs,batch_silhouette_pca,celltype_silhouette_pca,batch_silhouette_scvi,celltype_silhouette_scvi,batch_effect_reduction,bio_preservation,optimization_score
+2000,300,8,15751.32049977972,10,96,1,0.005399484409787433,0.30000000000000004,True,True,100,0.0019931511,0.19507763,0.0034609395,0.23878452,-0.0014677884,0.23878452,-0.23632015788462013

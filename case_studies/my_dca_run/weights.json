@@ -1,0 +1,7 @@
+{
+  "var_exp": 0.2,
+  "sil_pca": 0.2,
+  "lisi": 0.1,
+  "sil_dca": 0.25,
+  "dca_loss": 0.25
+}

@@ -1,0 +1,1 @@
+{"input_dim": 2000, "hidden_dim": 128, "latent_dim": 32, "use_zinb": true}

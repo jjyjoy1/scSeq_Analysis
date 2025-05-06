@@ -1,0 +1,2 @@
+batch_silhouette_pca,batch_silhouette_dca,celltype_silhouette_pca,celltype_silhouette_dca,batch_effect_reduction
+-0.0067908396,-0.0036268868,0.18952356,0.23241438,-0.0031639528

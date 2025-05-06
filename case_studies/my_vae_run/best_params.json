@@ -1,0 +1,9 @@
+{
+  "min_genes": 300,
+  "min_cells": 10,
+  "max_pct_mito": 0.15000000000000002,
+  "norm_method": "sctransform",
+  "n_top_genes": 2000,
+  "n_latent": 30,
+  "n_layers": 1
+}

@@ -1,0 +1,14 @@
+{
+  "min_genes": 1000,
+  "min_cells": 10,
+  "max_pct_mito": 0.2,
+  "norm_method": "sctransform",
+  "n_top_genes": 1000,
+  "latent_dim": 10,
+  "hidden_dim": 128,
+  "dropout_rate": 0.2,
+  "learning_rate": 2.3516739917452534e-05,
+  "l2_reg": 3.149937248461251e-05,
+  "use_zinb": false,
+  "max_epochs": 150
+}
